@@ -35,7 +35,7 @@ const NavBar = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Live Service', path: '/live-service' },
-    { name: 'Community', path: '/community' },
+    { name: 'Pastors', path: '/community' },
     { name: 'Give', path: '/give' },
     { name: 'Salvation', path: '/salvation' },
   ];
