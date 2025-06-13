@@ -1,0 +1,6 @@
+Update README and component content for Sonlife Connect
+
+- Revised README to include project description, prerequisites, features, and contribution guidelines.
+- Updated text in About, Give, and GivePage components to enhance clarity and engagement.
+- Improved LiveServicePage to dynamically fetch and display recent sermons, with better error handling and user experience.
+- Enhanced Hero component with typing animation for a more interactive presentation.

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonlife City Church</title>
+    <script>
+      // This function will be called when the Google Maps API is loaded
+      function initMapCallback() {
+        // Dispatch a custom event that our React component can listen for
+        const event = new Event('google-maps-loaded');
+        window.dispatchEvent(event);
+        
+        // If there's a global initMap function defined by our React component, call it
+        if (window.initMap) {
+          window.initMap();
+        }
+      }
+    </script>
+    <style>
+      /* Preload background image for faster rendering */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/lovable-uploads/a78d0457-40c8-4f1f-997d-b60af9316471.png');
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+        opacity: 0.1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- Load Google Maps API with your key -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=%VITE_GOOGLE_MAPS_API_KEY%&callback=initMapCallback">
+    </script>
+  </body>
+</html>

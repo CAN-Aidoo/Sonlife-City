@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@types/google.maps": "^3.58.1"
+  },
+  "dependencies": {
+    "@paystack/inline-js": "^2.22.3",
+    "@supabase/supabase-js": "^2.49.4"
+  }
+}

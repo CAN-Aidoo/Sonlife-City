@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 100% 98%; /* Whiter background for better readability */
+    --foreground: 220 70% 15%; /* Darker foreground for better contrast */
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 70% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 70% 15%;
+
+    --primary: 211 73% 32%; /* Persian Blue - main brand color */
+    --primary-foreground: 200 100% 98%;
+
+    --secondary: 50 90% 65%; /* Gold - clearer accent */
+    --secondary-foreground: 220 70% 15%;
+
+    --muted: 195 60% 82%; /* Middle Blue - softer on the eyes */
+    --muted-foreground: 220 70% 15%;
+
+    --accent: 206 74% 56%; /* Picton Blue - more vibrant */
+    --accent-foreground: 220 70% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 195 40% 85%;
+    --input: 195 40% 85%;
+    --ring: 211 73% 32%;
+
+    --radius: 0.5rem;
+
+    --gradient-background-start: rgb(12, 28, 68); /* College Blue */
+    --gradient-background-end: rgb(22, 78, 142); /* Persian Blue */
+    --first-color: rgb(56, 149, 229); /* Picton Blue */
+    --second-color: rgb(247, 223, 88); /* Yellow Banana */
+    --third-color: rgb(242, 250, 255); /* Morning Blue */
+    --fourth-color: rgb(175, 231, 242); /* Middle Blue */
+    --fifth-color: rgb(22, 78, 142); /* Persian Blue */
+    --pointer-color: rgb(242, 250, 255);
+    --size: 100%;
+    --blending-value: screen;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-yellow-banana to-sonlife-gold bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-college-blue to-persian-blue bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-persian-blue to-picton-blue bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-secondary {
+    @apply bg-gradient-to-r from-morning-blue to-middle-blue bg-clip-text text-transparent;
+  }
+  
+  .glass {
+    @apply bg-morning-blue/80 backdrop-blur-md border border-middle-blue/40 shadow-lg;
+  }
+  
+  .glass-dark {
+    @apply bg-college-blue/85 backdrop-blur-md border border-persian-blue/30 shadow-lg;
+  }
+  
+  .glass-accent {
+    @apply bg-middle-blue/70 backdrop-blur-md border border-middle-blue/50 shadow-lg;
+  }
+  
+  .glass-primary {
+    @apply bg-persian-blue/80 backdrop-blur-md border border-picton-blue/40 shadow-lg text-morning-blue;
+  }
+  
+  .nav-item {
+    @apply relative px-4 py-2 font-medium text-sm transition-all duration-200 hover:text-yellow-banana;
+  }
+  
+  .nav-item::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-picton-blue transition-all duration-300 ease-in-out;
+  }
+  
+  .nav-item:hover::after {
+    @apply w-full bg-yellow-banana;
+  }
+  
+  .nav-item-active {
+    @apply text-yellow-banana;
+  }
+  
+  .nav-item-active::after {
+    @apply w-full bg-yellow-banana;
+  }
+  
+  .btn-hover-effect {
+    @apply relative overflow-hidden transition-all duration-300 ease-in-out;
+  }
+  
+  .btn-hover-effect::before {
+    @apply content-[''] absolute top-0 left-0 w-full h-full bg-picton-blue/20 transform scale-x-0 origin-right transition-transform duration-300 ease-in-out;
+  }
+  
+  .btn-hover-effect:hover::before {
+    @apply scale-x-100 origin-left;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes scale-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px) translateX(5px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-5px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(5px);
+    }
+  }
+  
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scale-in 0.5s ease-out forwards;
+  }
+  
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+  
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, 
+      rgba(235, 252, 255, 0), 
+      rgba(43, 163, 236, 0.2), 
+      rgba(235, 252, 255, 0));
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  .animate-wave {
+    animation: wave 3s ease-in-out infinite;
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.8s ease-out forwards;
+  }
+
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background: rgba(43, 163, 236, 0.4); /* Picton Blue, semi-transparent */
+    pointer-events: none;
+    z-index: 10;
+  }
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  .fade-in.visible {
+    opacity: 1;
+  }
+
+  button { position: relative; overflow: hidden; }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl;
+    transform: translateY(0);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-5px);
+  }
+
+  .border-shine {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    overflow: hidden;
+  }
+  
+  .border-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      45deg, 
+      rgba(11, 95, 176, 0.5), 
+      rgba(43, 163, 236, 0.3), 
+      rgba(235, 252, 255, 0.5), 
+      rgba(239, 237, 206, 0.3)
+    );
+    background-size: 400% 400%;
+    animation: shimmer 4s linear infinite;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  
+  .animate-on-scroll.animate-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  
+  .reveal-on-scroll.animate-slide-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

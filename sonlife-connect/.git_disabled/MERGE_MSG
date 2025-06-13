@@ -1,0 +1,6 @@
+Merge branch 'main' of https://github.com/CAN-Aidoo/sonlife-connect
+
+# Conflicts:
+#	src/components/Hero.tsx
+#	src/pages/GivePage.tsx
+#	src/pages/LiveServicePage.tsx
