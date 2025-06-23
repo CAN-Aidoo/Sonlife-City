@@ -23,7 +23,7 @@ export function PageLayout({ children, className = "" }: PageLayoutProps) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in');
-            entry.target.classList.remove('opacity-0'); // Ensure opacity is set to 1
+            entry.target.classList.remove('opacity-1'); // Ensure opacity is set to 1
             observer.unobserve(entry.target);
           }
         });
@@ -52,7 +52,7 @@ export function PageLayout({ children, className = "" }: PageLayoutProps) {
       {/* Content Layer */}
       <div className="relative z-10">
         <NavBar />
-        <main className={`pt-28 pb-16 bg-gray-100 ${className}`}> {/* Adjusted pt to accommodate fixed NavBar */}
+        <main className="min-h-screen w-full bg-white/10 backdrop-blur-sm">
           <div className="container px-4 md:px-6 mx-auto max-w-7xl">
             {children}
           </div>

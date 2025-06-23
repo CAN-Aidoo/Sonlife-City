@@ -21,6 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Heart, Globe, Home, Gift, ChevronRight, CheckCircle, Landmark, CreditCard, Smartphone, Building, Loader2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { initializePayment, generateTransactionReference } from "@/lib/paystack";
+import { donationsService } from "@/services/donations";
 import type { Donation } from "@/lib/supabase";
 
 const donationFormSchema = z.object({
@@ -99,21 +100,11 @@ const GivePage = () => {
   }, [form]);
 
   const onSubmit = async (values: DonationFormValues) => {
+    setIsLoading(true);
+    const reference = generateTransactionReference();
+    const amount = Number(parseFloat(values.amount).toFixed(2));
+
     try {
-      setIsLoading(true);
-      const reference = generateTransactionReference();
-      
-      // Format amount to 2 decimal places and ensure it's a valid number
-      const amount = Number(parseFloat(values.amount).toFixed(2));
-      if (isNaN(amount) || amount <= 0) {
-        throw new Error('Please enter a valid amount');
-      }
-
-      // Validate currency
-      if (!['GHS', 'USD'].includes(values.currency)) {
-        throw new Error('Invalid currency selected');
-      }
-
       await initializePayment({
         email: values.email.trim(),
         amount,
@@ -125,9 +116,29 @@ const GivePage = () => {
           frequency: values.frequency,
           currency: values.currency,
         },
-        onSuccess: () => {
-          form.reset();
-          setIsLoading(false);
+        onSuccess: async () => {
+          try {
+            await donationsService.createDonation({
+              email: values.email.trim(),
+              amount,
+              reference,
+              giving_type: values.givingType,
+              frequency: values.frequency,
+              status: "completed",
+              currency: values.currency,
+              name: values.name.trim(),
+            });
+            form.reset();
+            setIsLoading(false);
+            window.location.href = `/donation/success?reference=${reference}`;
+          } catch (error) {
+            toast({
+              title: "Database Error",
+              description: "Donation was successful but could not be saved. Please contact support.",
+              variant: "destructive",
+            });
+            setIsLoading(false);
+          }
         },
         onCancel: () => {
           toast({
@@ -139,7 +150,6 @@ const GivePage = () => {
         },
       });
     } catch (error) {
-      console.error('Payment initialization error:', error);
       let errorMessage = "An error occurred while processing your donation. Please try again.";
       if (error instanceof Error) {
         if (error.message.includes('Failed to load Paystack script')) {

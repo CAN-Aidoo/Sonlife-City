@@ -116,7 +116,26 @@ export const initializePayment = async (config: DonationConfig) => {
   try {
     await loadPaystackScript();
 
+    if (typeof window.PaystackPop === 'undefined') {
+      toast({
+        title: "Payment Error",
+        description: "Paystack script failed to load. Please check your internet connection or disable ad blockers.",
+        variant: "destructive"
+      });
+      throw new Error("PaystackPop is not defined after script load");
+    }
+
     const amount = convertToSmallestUnit(config.amount, config.currency);
+
+    // Debug log for Paystack config
+    console.log('Paystack config:', {
+      key: paystackPublicKey,
+      email: config.email,
+      amount,
+      currency: config.currency,
+      ref: config.ref,
+      metadata: config.metadata,
+    });
 
     window.PaystackPop.setup({
       key: paystackPublicKey,

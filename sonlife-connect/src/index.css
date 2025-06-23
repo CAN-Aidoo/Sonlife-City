@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -55,6 +56,11 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    background-image: url('/images/background-texture.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   html {
@@ -361,5 +367,9 @@
   .reveal-on-scroll.animate-slide-in {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .font-allura {
+    font-family: 'Allura', cursive;
   }
 }

@@ -1,25 +1,28 @@
 import { useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import xImg from "@/assets/images/x.jpg";
+import yImg from "@/assets/images/y.jpg";
+import zImg from "@/assets/images/z.jpg";
 
 const pastors = [
   {
     name: "Rev. Dr. Francis Adjapong",
     description:
       "Ambassador Rev. Dr. Francis Adjapong is a pillar of inspiration and leadership in Sunyani, Ghana. Raised in Sunyani and educated at Sunyani Senior High, he was deeply influenced by the rich cultural and spiritual heritage of his hometown, which laid the foundation for his lifelong commitment to faith and education. An accomplished pastor and visionary leader, he founded Sonlife City Church where he serves as a dedicated bond servant, tirelessly nurturing the community with compassion, wisdom, and spiritual guidance.",
-    image: require("@/assets/images/x.jpg"),
+    image: xImg,
   },
   {
     name: "Rev. Dr. Pastor Abena Adjapong",
     description:
       "Rev. Dr. Pastor Abena Adjapong is a passionate minister, educator, and co-leader at Sonlife City Church. She is known for her dynamic teaching, compassionate heart, and commitment to empowering women and families in the faith.",
-    image: require("@/assets/images/y.jpg"),
+    image: yImg,
   },
   {
     name: "Pastor Yorne",
     description:
       "Pastor Yorne is a dedicated servant of God, leading prayer and intercession ministries at Sonlife City Church. His ministry is marked by fervent prayer, spiritual insight, and a heart for revival.",
-    image: require("@/assets/images/z.jpg"),
+    image: zImg,
   },
   {
     name: "Pastor Newman",
@@ -59,7 +62,7 @@ const CommunityPage = () => {
                 >
                   <div className="w-40 h-52 mb-6 rounded-xl overflow-hidden border-4 border-sonlife-blue bg-gray-100 flex items-center justify-center">
                     <img
-                      src={typeof pastor.image === 'string' ? pastor.image : pastor.image.default}
+                      src={pastor.image}
                       alt={pastor.name}
                       className="w-full h-full object-cover object-center"
                     />

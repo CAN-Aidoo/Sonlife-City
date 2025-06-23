@@ -26,12 +26,12 @@ const Hero = () => {
         Your browser does not support the video tag.
       </video>
 
-      <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-center p-4">
-        <div className="z-10 text-white space-y-6">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
-            Welcome to <span className="text-gradient-gold">Sonlife</span> City Church
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] flex items-center justify-center text-center p-4">
+        <div className="z-10 text-white space-y-6 bg-black/20 p-8 rounded-lg backdrop-blur-sm">
+          <h1 className="text-4xl md:text-6xl font-allura font-bold leading-tight">
+            Welcome to <span className="text-gradient-gold font-allura">Sonlife</span> City Church
           </h1>
-          <p className="text-xl md:text-2xl font-light">
+          <p className="text-xl md:text-2xl font-light font-allura">
             Bringing believers to the full Knowledge of Christ.
           </p>
           {/* Add calls to action here if needed */}
